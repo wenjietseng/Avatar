@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/_Scenes/VRIK (Basic Head & Hands Calibration) me.unity
+    path: Assets/_Scenes/ExpV1.unity
     guid: 5e15ad93957e64ac7bb41feaa124995f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 7ecf67d6c13bd45a38bfb8911bc23494, type: 2}
