@@ -4,12 +4,13 @@ using UnityEngine;
 using TMPro;
 using Klak.Motion;
 using UnityEngine.UIElements;
+using RootMotion.Demos;
 
 public class ExperimentController : MonoBehaviour
 {
     [Header("Participant Info")]
     public int participantID = 0;
-    public enum GenderMatchedAvatar { female = 0, male = 1 };
+    public enum GenderMatchedAvatar { woman = 0, man = 1 };
     public GenderMatchedAvatar genderMatchedAvatar;
 
     [Header("Conditions")]
@@ -40,6 +41,7 @@ public class ExperimentController : MonoBehaviour
     public GameObject maleAvatar;
     public GameObject syncAvatar;
     private SkinnedMeshRenderer[] syncAvatarSMRs;
+    private SkinnedMeshRenderer rocketboxSMR;
     // for async avatar
     public GameObject leftArmBM;
     public GameObject rightArmBM;
@@ -49,12 +51,11 @@ public class ExperimentController : MonoBehaviour
     public GameObject startBox;
     public GameObject mainInstructionsCanvas;
     public TMP_Text mainInstructions;
-    // in fact we only need one controller lol
-    public GameObject leftController;
-    public GameObject rightController;
     private QuestionnaireController questionnaireController;
     public bool isStartFlagOn;
     private bool isCountDown;
+
+    public VRIKCalibrationBasic ikCalibration;
 
 
     void Start()
@@ -62,12 +63,14 @@ public class ExperimentController : MonoBehaviour
         startBox.SetActive(false);
         pointer.GetComponent<Renderer>().enabled = false;
 
-        syncAvatar = (genderMatchedAvatar == GenderMatchedAvatar.female) ? femaleAvatar : maleAvatar;
-        if (genderMatchedAvatar == GenderMatchedAvatar.female) maleAvatar.SetActive(false);
+        syncAvatar = (genderMatchedAvatar == GenderMatchedAvatar.woman) ? femaleAvatar : maleAvatar;
+        ikCalibration = syncAvatar.GetComponent<VRIKCalibrationBasic>();
+        if (genderMatchedAvatar == GenderMatchedAvatar.woman) maleAvatar.SetActive(false);
         else femaleAvatar.SetActive(false);
 
         // get mesh renderers for transitions between avatar (hand tracking) and controllers
-        syncAvatarSMRs = syncAvatar.GetComponentsInChildren<SkinnedMeshRenderer>();
+        //syncAvatarSMRs = syncAvatar.GetComponentsInChildren<SkinnedMeshRenderer>();
+        rocketboxSMR = syncAvatar.GetComponentInChildren<SkinnedMeshRenderer>();
 
         leftArmBM.transform.localPosition = Vector3.zero;
         leftArmBM.GetComponent<BrownianMotion>().enabled = false;
@@ -77,7 +80,11 @@ public class ExperimentController : MonoBehaviour
         // enable the gender matched avatar
         questionnaireController = this.GetComponent<QuestionnaireController>();
         PrepareCondition();
-        foreach (var t in syncAvatarSMRs) t.enabled = false;
+        //foreach (var t in syncAvatarSMRs) t.enabled = false;
+        rocketboxSMR.enabled = false;
+
+        mainInstructions.text = mainInstructions.text + "\n\n" +
+            "Participant ID: " + participantID.ToString() + ", " + genderMatchedAvatar + " avatar";
 
     }
 
@@ -119,7 +126,7 @@ public class ExperimentController : MonoBehaviour
             if (isCountDown)
             {
                 currentTime += Time.deltaTime;
-                mainInstructions.text = "Stretch out your arms for calibration. The study will begin in " + (5f - currentTime).ToString("F0");
+                mainInstructions.text = "Stretch out your arms for calibration. The study will begin in " + (5f - currentTime).ToString("F0") + " seconds.";
             }
             // switch from controllers to hands
 
@@ -136,8 +143,8 @@ public class ExperimentController : MonoBehaviour
                     }
                     else if (vmType == VisuomotorType.Async)
                     {
-                        if (leftArmBM.transform.parent == null) AssignLBMParent();
-                        if (rightArmBM.transform.parent == null) AssignRBMParent();
+                        //if (leftArmBM.transform.parent == null) AssignLBMParent();
+                        //if (rightArmBM.transform.parent == null) AssignRBMParent();
 
                         if (!leftArmBM.GetComponent<BrownianMotion>().enabled)
                             leftArmBM.GetComponent<BrownianMotion>().enabled = true;
@@ -149,8 +156,8 @@ public class ExperimentController : MonoBehaviour
                     {
                         if (currentTime < (exposureDuration / 2))
                         {
-                            if (leftArmBM.transform.parent == null) AssignLBMParent();
-                            if (rightArmBM.transform.parent == null) AssignRBMParent();
+                            //if (leftArmBM.transform.parent == null) AssignLBMParent();
+                            //if (rightArmBM.transform.parent == null) AssignRBMParent();
 
                             if (!leftArmBM.GetComponent<BrownianMotion>().enabled)
                                 leftArmBM.GetComponent<BrownianMotion>().enabled = true;
@@ -176,8 +183,8 @@ public class ExperimentController : MonoBehaviour
                     {
                         if ((exposureDuration / 2) < currentTime)
                         {
-                            if (leftArmBM.transform.parent == null) AssignLBMParent();
-                            if (rightArmBM.transform.parent == null) AssignRBMParent();
+                            //if (leftArmBM.transform.parent == null) AssignLBMParent();
+                            //if (rightArmBM.transform.parent == null) AssignRBMParent();
 
                             if (!leftArmBM.GetComponent<BrownianMotion>().enabled)
                                 leftArmBM.GetComponent<BrownianMotion>().enabled = true;
@@ -201,7 +208,8 @@ public class ExperimentController : MonoBehaviour
                     }
 
                     // stop showing avatar, disable avatars
-                    foreach (var t in syncAvatarSMRs) t.enabled = false;
+                    //foreach (var t in syncAvatarSMRs) t.enabled = false;
+                    rocketboxSMR.enabled = false;
 
                     // enable questionnaire gameobjects
                     isAvatarRunning = false;
@@ -228,7 +236,7 @@ public class ExperimentController : MonoBehaviour
                     currentTime = 0f;
                     PrepareCondition();
                     mainInstructionsCanvas.SetActive(true);
-                    mainInstructions.text = "Please put down your controllers. Touch the start with the pink dot. Once start, stretch out your arms for calibration.";
+                    mainInstructions.text = "Please put down your controllers and then touch 'start' with the pink dot.";
                 }
             }
         }
@@ -244,17 +252,19 @@ public class ExperimentController : MonoBehaviour
     {
         //Debug.LogWarning("Start the current condition!");
         isCountDown = true;
-        OVRPlugin.ResetBodyTrackingCalibration();
+        //OVRPlugin.ResetBodyTrackingCalibration();
+        ikCalibration.calibrateAvatar = true;
 
         yield return new WaitForSeconds(5f);
-
-        OVRPlugin.ResetBodyTrackingCalibration();
+        //OVRPlugin.ResetBodyTrackingCalibration();
+        ikCalibration.calibrateAvatar = true;
 
         isCountDown = false;
         currentTime = 0f;
         isAvatarRunning = true;
-        mainInstructions.text = "Please stand still, move your arms freely, and look down.";
-        foreach (var t in syncAvatarSMRs) t.enabled = true;
+        mainInstructions.text = "Please tilt your head downwards as if looking down at your body.";
+        //foreach (var t in syncAvatarSMRs) t.enabled = true;
+        rocketboxSMR.enabled = true;
 
         yield return 0;
     }

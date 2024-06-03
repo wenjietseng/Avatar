@@ -61,7 +61,7 @@ public class QuestionnaireController : MonoBehaviour
                     scale.SetActive(true);
                     currentScaleGO.SetActive(true);
                     smallInstruction.text = (currentItem + 1).ToString("F0") + "/" + items.Count;
-                    largeInstruction.text = "Use your right controller: Left/Right to select a response and press A to confrim.";
+                    largeInstruction.text = "Use Left/Right to select and press A to confirm.";
                 }
             }
         }
@@ -129,8 +129,8 @@ public class QuestionnaireController : MonoBehaviour
                     }
                     else
                     {
-                        smallInstruction.text = "Use Left/Right to select a response and press A to confrim.\n" + currentItem.ToString("F0") + "/" + items.Count.ToString();
-                        largeInstruction.text = "Use Up/Down to check your responses and Press B to end the test.";
+                        smallInstruction.text = "Use Left/Right to select and press A to confirm.\n" + currentItem.ToString("F0") + "/" + items.Count.ToString();
+                        largeInstruction.text = "Use Up/Down to check your responses and press B to proceed.";
                         isAllowedCheck = true;
                         currentItem = items.Count-1;
                     }
@@ -145,7 +145,7 @@ public class QuestionnaireController : MonoBehaviour
                     if (currentItem > 0)
                     {
                         currentItem -= 1;
-                        smallInstruction.text = "Use Left/Right to select a response and press A to confrim.\n" + (currentItem + 1).ToString("F0") + "/" + items.Count.ToString();
+                        smallInstruction.text = "Use Left/Right to select and press A to confirm.\n" + (currentItem + 1).ToString("F0") + "/" + items.Count.ToString();
                         mainText.text = items[currentItem].item;
                         lowAnchorText.text = items[currentItem].lowAnchor;
                         highAnchorText.text = items[currentItem].highAnchor;
@@ -160,7 +160,7 @@ public class QuestionnaireController : MonoBehaviour
                     if (currentItem < items.Count-1)
                     {
                         currentItem += 1;
-                        smallInstruction.text = "Use Left/Right to select a response and press A to confrim.\n" + (currentItem + 1).ToString("F0") + "/" + items.Count.ToString();
+                        smallInstruction.text = "Use Left/Right to select and press A to confirm.\n" + (currentItem + 1).ToString("F0") + "/" + items.Count.ToString();
                         mainText.text = items[currentItem].item;
                         lowAnchorText.text = items[currentItem].lowAnchor;
                         highAnchorText.text = items[currentItem].highAnchor;
@@ -195,19 +195,19 @@ public class QuestionnaireController : MonoBehaviour
 
         string questionnairePath = Helpers.CreateDataPath(experimentController.participantID, "_" + experimentController.vmType.ToString());
         questionnaireWriter = new StreamWriter(questionnairePath, true);
-        mainText.text = "Please fill out the following questions based on the last experience.";
+        mainText.text = "Please fill out the questionnaire based on the last experience.";
         isStart = false;
         isEnd = false;
         scale.SetActive(false);
 
-        r03 = new QuestionnaireData("I felt as if the movements of the virtual body were influencing my own movements.", "never", "Always");
-        r05 = new QuestionnaireData("At some point it felt as if my real body was starting to take on the posture or shape of the virtual body that I saw.", "Never", "Always");
-        r10 = new QuestionnaireData("I felt as if the virtual body was my body.", "Never", "Always");
-        r11 = new QuestionnaireData("At some point it felt that the virtual body resembled my own (real) body in terms of shape skin tone or other visual features.", "Never", "Always");
-        r12 = new QuestionnaireData("I felt as if my body was located where I saw the virtual body.", "Never", "Always");
-        r13 = new QuestionnaireData("I felt like I could control the virtual body as if it was my own body.", "Never", "Always");
-        r14 = new QuestionnaireData("It seemed as if I felt the touch of the floor in the location where I saw the virtual feet touched.", "Never", "Always");
-        goodness = new QuestionnaireData("Please rate the goodness of the  experience.", "Bad", "Good");
+        r03 = new QuestionnaireData("I felt as if the movements of the virtual body were influencing my own movements.", "never", "always");
+        r05 = new QuestionnaireData("At some point it felt as if my real body was starting to take on the posture or shape of the virtual body that I saw.", "never", "always");
+        r10 = new QuestionnaireData("I felt as if the virtual body was my body.", "never", "always");
+        r11 = new QuestionnaireData("At some point it felt that the virtual body resembled my own (real) body in terms of shape skin tone or other visual features.", "never", "always");
+        r12 = new QuestionnaireData("I felt as if my body was located where I saw the virtual body.", "never", "always");
+        r13 = new QuestionnaireData("I felt like I could control the virtual body as if it was my own body.", "never", "always");
+        r14 = new QuestionnaireData("It seemed as if I felt the touch of the floor in the location where I saw the virtual feet touched.", "never", "always");
+        goodness = new QuestionnaireData("Please rate the goodness of the experience.", "bad", "good");
 
         items = new List<QuestionnaireData>();
         items.Add(r03);
@@ -225,7 +225,7 @@ public class QuestionnaireController : MonoBehaviour
         currentScale = 4;
         currentScaleGO = scales[currentScale - 1];
         smallInstruction.text = "";
-        largeInstruction.text = "Press A to Start.";
+        largeInstruction.text = "Press A to begin.";
         isAllowedCheck = false;
 
         foreach (var s in scales) s.SetActive(false);

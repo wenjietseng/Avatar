@@ -28,12 +28,17 @@ namespace RootMotion.Demos
         [Header("Data stored by Calibration")]
         public VRIKCalibrator.CalibrationData data = new VRIKCalibrator.CalibrationData();
 
+
+        public bool calibrateAvatar;
+
+
         private void LateUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.C) || OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.RTouch))
+            if (Input.GetKeyDown(KeyCode.C) || calibrateAvatar)
             {
                 // Calibrate the character, store data of the calibration
                 data = VRIKCalibrator.Calibrate(ik, centerEyeAnchor, leftHandAnchor, rightHandAnchor, headAnchorPositionOffset, headAnchorRotationOffset, handAnchorPositionOffset, handAnchorRotationOffset, scaleMlp);
+                calibrateAvatar = false;
             }
 
             /*
