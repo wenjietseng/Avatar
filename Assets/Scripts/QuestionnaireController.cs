@@ -55,6 +55,7 @@ public class QuestionnaireController : MonoBehaviour
                 if (!isEnd)
                 {
                     isStart = true;
+                    Debug.LogWarning(1);
                     mainText.text = items[currentItem].item; // seems to have an error? ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
                     lowAnchorText.text = items[currentItem].lowAnchor;
                     highAnchorText.text = items[currentItem].highAnchor;

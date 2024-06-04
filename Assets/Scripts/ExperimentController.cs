@@ -196,6 +196,8 @@ public class ExperimentController : MonoBehaviour
                 }
                 else
                 {
+
+                    Debug.LogWarning(2);
                     if (leftArmBM.GetComponent<BrownianMotion>().enabled)
                     {
                         leftArmBM.transform.localPosition = Vector3.zero;
