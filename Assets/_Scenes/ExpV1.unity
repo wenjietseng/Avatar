@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17412806, g: 0.2177479, b: 0.2999437, a: 1}
+  m_IndirectSpecularColor: {r: 0.17403823, g: 0.21762401, b: 0.29978555, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5848,7 +5848,7 @@ MonoBehaviour:
       weight: 1
       footDistance: 0.15
       stepThreshold: 0.2
-      angleThreshold: 40
+      angleThreshold: 60
       comAngleMlp: 1
       maxVelocity: 0.4
       velocityFactor: 0.4
@@ -7709,7 +7709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5610f285ceeb54d278c493f9ef86369d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantID: 1
+  participantID: 0
   genderMatchedAvatar: 1
   layoutBlockNum: 0
   vmType: 0
@@ -9012,7 +9012,7 @@ MonoBehaviour:
       weight: 1
       footDistance: 0.15
       stepThreshold: 0.2
-      angleThreshold: 40
+      angleThreshold: 60
       comAngleMlp: 1
       maxVelocity: 0.4
       velocityFactor: 0.4
