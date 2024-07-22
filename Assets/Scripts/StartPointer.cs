@@ -7,11 +7,13 @@ public class StartPointer : MonoBehaviour
 {
     public GameObject rightHandTracking;
     private ExperimentController experimentController;
+    private ExpCtrlOnline expCtrlOnline;
     private Transform rightIndexTip;
 
     private void Start()
     {
         experimentController = GameObject.Find("ScriptsHandler").GetComponent<ExperimentController>();
+        expCtrlOnline = GameObject.Find("ScriptsHandler").GetComponent<ExpCtrlOnline>();
     }
 
     private void Update()
@@ -20,7 +22,9 @@ public class StartPointer : MonoBehaviour
         {
             //if (experimentController.syncAvatar != null && experimentController.syncAvatar.transform.FindChildRecursive("FullBody_RightHandIndexTip") != null)
             //    rightIndexTip = experimentController.syncAvatar.transform.FindChildRecursive("FullBody_RightHandIndexTip").transform;
-            if (experimentController.syncAvatar != null &&
+            // if (experimentController.syncAvatar != null &&
+            //     rightHandTracking.transform.FindChildRecursive("Hand_IndexTip") != null)
+            if (expCtrlOnline.syncAvatar != null &&
                 rightHandTracking.transform.FindChildRecursive("Hand_IndexTip") != null)
             {
                 rightIndexTip = rightHandTracking.transform.FindChildRecursive("Hand_IndexTip").transform;
@@ -36,7 +40,8 @@ public class StartPointer : MonoBehaviour
     {
         if (other.tag == "StartBox")
         {
-            experimentController.isStartFlagOn = true;
+            // experimentController.isStartFlagOn = true;
+            expCtrlOnline.isStartFlagOn = true;
         }
     }
 }
