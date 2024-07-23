@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.17403823, g: 0.21762401, b: 0.29978555, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7669,8 +7670,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1207822017}
-  - component: {fileID: 1207822016}
-  - component: {fileID: 1207822015}
   - component: {fileID: 1207822018}
   m_Layer: 0
   m_Name: ScriptsHandler
@@ -7679,66 +7678,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1207822015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207822014}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3f8c44c75a7b44c9e80c1be74eaae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questionnaireCanvas: {fileID: 36322378}
-  mainText: {fileID: 1736282065}
-  smallInstruction: {fileID: 1206965686}
-  largeInstruction: {fileID: 579659591}
-  lowAnchorText: {fileID: 894611452}
-  highAnchorText: {fileID: 1336235921}
-  scale: {fileID: 197258936}
-  scales:
-  - {fileID: 1367210498}
-  - {fileID: 276692098}
-  - {fileID: 1207372793}
-  - {fileID: 2038491205}
-  - {fileID: 1495434689}
-  - {fileID: 1940269262}
-  - {fileID: 1592151059}
-  responses: 
-  currentItem: 0
---- !u!114 &1207822016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207822014}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5610f285ceeb54d278c493f9ef86369d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  participantID: 0
-  genderMatchedAvatar: 1
-  layoutBlockNum: 0
-  vmType: 0
-  currentConditionNum: 0
-  currentTime: 0
-  isQuestionnaireDone: 0
-  exposureDuration: 180
-  femaleAvatar: {fileID: 960144584}
-  maleAvatar: {fileID: 1350045022}
-  syncAvatar: {fileID: 0}
-  leftArmBM: {fileID: 906822028}
-  rightArmBM: {fileID: 703176546}
-  pointer: {fileID: 2116730910}
-  startBox: {fileID: 1738644501}
-  mainInstructionsCanvas: {fileID: 641625157}
-  mainInstructions: {fileID: 1738690629}
-  isStartFlagOn: 0
-  ikCalibration: {fileID: 0}
 --- !u!4 &1207822017
 Transform:
   m_ObjectHideFlags: 0
@@ -7768,9 +7707,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   participantID: 0
-  genderMatchedAvatar: 0
+  genderMatchedAvatar: 1
   currentTime: 0
-  vmType: 2
+  vmType: 1
   exposureDuration: 180
   femaleAvatar: {fileID: 960144584}
   maleAvatar: {fileID: 1350045022}

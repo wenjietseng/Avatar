@@ -59,7 +59,7 @@ public class ExpCtrlOnline : MonoBehaviour
     public bool isStartFlagOn;
     private bool isCountDown;
     public VRIKCalibrationBasic ikCalibration;
-    private List<string> codeWordList = new List<string> {"code1", "code2", "code3"};
+    private List<string> codeWordList = new List<string> {"code1", "code2"};
     public string codeWord;
 
     void Start()
@@ -192,7 +192,7 @@ public class ExpCtrlOnline : MonoBehaviour
                 mainInstructions.text = "The VR experience has ended. Please write down the following details for the survey." + 
                     "\nCode Word: " + codeWord +
                     "\nLeft Hand-Tracking Quality: " + leftOut.ToString("F3") +
-                    "\nRight Hand-Tracking Quality: " + rightOut.ToString ("F3"); // + handtrackingQ
+                    "\nRight Hand-Tracking Quality: " + rightOut.ToString ("F3");
             }
         }
     }
