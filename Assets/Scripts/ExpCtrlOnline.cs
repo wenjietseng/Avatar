@@ -126,7 +126,7 @@ public class ExpCtrlOnline : MonoBehaviour
         if (isCountDown)
         {
             currentTime += Time.deltaTime;
-            mainInstructions.text = "Stretch out your arms in front of you to calibrate. The study will begin in " + (5f - currentTime).ToString("F0") + " secs.";
+            mainInstructions.text = "Stretch out your arms in front of your body. The study will begin in " + (5f - currentTime).ToString("F0") + ".";
         }
 
         if (isAvatarRunning)
@@ -205,7 +205,7 @@ public class ExpCtrlOnline : MonoBehaviour
             if (leftHand.HandConfidence == OVRHand.TrackingConfidence.High)
             {
                 leftHandTrackingQuality.Add(1);
-                mainInstructions.text = "Please tilt your head downwards as if looking down at your body.\nleft good.";
+                // mainInstructions.text = "Please tilt your head downwards as if looking down at your body.";
             }
             else
             {
@@ -225,7 +225,7 @@ public class ExpCtrlOnline : MonoBehaviour
             if (rightHand.HandConfidence == OVRHand.TrackingConfidence.High)
             {
                 rightHandTrackingQuality.Add(1);
-                mainInstructions.text += "\nright good."; ////////// to fix
+                // mainInstructions.text += "\nright good."; ////////// to fix
             }
             else
             {

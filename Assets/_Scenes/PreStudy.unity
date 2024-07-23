@@ -7768,9 +7768,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   participantID: 0
-  genderMatchedAvatar: 1
+  genderMatchedAvatar: 0
   currentTime: 0
-  vmType: 6
+  vmType: 2
   exposureDuration: 180
   femaleAvatar: {fileID: 960144584}
   maleAvatar: {fileID: 1350045022}
@@ -12007,7 +12007,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Please put down your controllers and then touch 'start' with the pink dot.
+  m_text: Please put the pink dot next to your right index finger inside the Start
+    UI.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
