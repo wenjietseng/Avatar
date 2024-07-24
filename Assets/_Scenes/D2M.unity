@@ -7708,10 +7708,10 @@ MonoBehaviour:
   participantID: 0
   genderMatchedAvatar: 1
   currentTime: 0
-  vmType: 1
+  vmType: 2
   codeWordList:
-  - paprika
-  - pepper
+  - blackberry
+  - blueberry
   exposureDuration: 180
   femaleAvatar: {fileID: 960144584}
   maleAvatar: {fileID: 1350045022}

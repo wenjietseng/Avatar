@@ -26,8 +26,9 @@ public class ExpCtrlOnline : MonoBehaviour
     ///                                        {3, 4, 1, 2},
     ///                                        {4, 2, 3, 1} };
     /// </summary>
-    public enum VisuomotorType { D1M = 1, D1F = 2, D2M = 3, D2F = 4, D3M = 5, D3F = 6 };
+    public enum VisuomotorType { D1 = 1, D2 = 2, D3 = 3};
     public VisuomotorType vmType;
+    public List<string> codeWordList = new List<string> {"code1", "code2"};
     private bool isAvatarRunning;
     private bool isQuestionnaireRunning;
     public float exposureDuration = 180f;
@@ -59,7 +60,7 @@ public class ExpCtrlOnline : MonoBehaviour
     public bool isStartFlagOn;
     private bool isCountDown;
     public VRIKCalibrationBasic ikCalibration;
-    private List<string> codeWordList = new List<string> {"code1", "code2"};
+
     public string codeWord;
 
     void Start()
@@ -79,15 +80,15 @@ public class ExpCtrlOnline : MonoBehaviour
         rightArmBM.transform.localPosition = Vector3.zero;
         rightArmBM.GetComponent<BrownianMotion>().enabled = false;
 
-        if (vmType == VisuomotorType.D1M || vmType == VisuomotorType.D1F)
+        if (vmType == VisuomotorType.D1)
         {
             durationFactor = 1;
         }
-        else if (vmType == VisuomotorType.D2M || vmType == VisuomotorType.D2F)
+        else if (vmType == VisuomotorType.D2)
         {
             durationFactor = 2;
         }
-        else if (vmType == VisuomotorType.D3M || vmType == VisuomotorType.D3F)
+        else if (vmType == VisuomotorType.D3)
         {
             durationFactor = 3;
         }
@@ -101,7 +102,7 @@ public class ExpCtrlOnline : MonoBehaviour
         rightHandTrackingQuality = new List<int> {};
 
         rocketboxSMR.enabled = false;
-        mainInstructions.text = mainInstructions.text + "\n\n" + vmType.ToString();
+        mainInstructions.text = mainInstructions.text + "\n\n" + vmType.ToString() + "-" + genderMatchedAvatar.ToString();
     }
 
     void Update()

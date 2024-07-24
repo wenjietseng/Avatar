@@ -7706,7 +7706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   participantID: 0
-  genderMatchedAvatar: 1
+  genderMatchedAvatar: 0
   currentTime: 0
   vmType: 1
   codeWordList:
